@@ -21,15 +21,17 @@ sub post {
     my $self = shift;
     my $model = lib::Model->new;
     my $post = $self->req->json;
+    my $echo = $post->{'echo'};
     my $t = localtime;
 
     my $res = $model->insert(
         'echos',
         {
-            echo=>$post->{'echo'},
+            echo=>$echo,
             created_at=> $t->datetime
         }
     );
+    $self->ws->send_all($echo);
 
     $self->render(json=>{'id'=>1,'error'=>undef});
 }
