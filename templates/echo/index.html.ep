@@ -1,0 +1,8 @@
+% layout 'default';
+% title 'Echos';
+<% for my $echo (@$echos){ %>
+<div class="echo">
+<%= $echo->echo %>
+</div>
+<% } %>
+
