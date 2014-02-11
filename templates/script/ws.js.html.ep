@@ -1,0 +1,27 @@
+%= javascript begin
+$(
+        function (){
+
+            $('#message').focus();
+            var $ws = new WebSocket('ws://ghost-lab.info/broadcast');
+            $ws.onopen = function () {
+            }
+            $ws.onmessage = function (msg){
+                var $res = JSON.parse(msg.data);
+                var $msg = $res.message;
+                var $elm = $('<div class="echo" style="display:none">'+$msg+'</div>');
+                $elm.prependTo($('#echos'));
+                $elm.show('fast');
+
+            }
+            $('#message').keydown( function(e) {
+                if (e.keyCode == 13 && $('#message').val() ){
+                    $ws.send($('#message').val());
+                    $('#message').val('');
+                }
+            });
+        }
+
+ );
+
+%= end

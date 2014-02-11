@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html>
-  <head><title><%= title %></title></head>
+  <head>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <%= include 'script/ws.js' %>
+  <title><%= title %></title>
+  </head>
   <body><%= content %></body>
 </html>
