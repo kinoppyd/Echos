@@ -14,6 +14,7 @@ sub startup {
   # Normal route to controller
   $r->get('/')->to('echo#index');
   $r->post('/echo')->to('echo#post');
+  $r->websocket('/broadcast')->to('ws#broadcast');
 }
 
 1;
