@@ -31,9 +31,9 @@ sub post {
             created_at=> $t->datetime
         }
     );
-    $self->ws->send_all($echo);
+    $self->ws->send_all($res->echo);
 
-    $self->render(json=>{'id'=>1,'error'=>undef});
+    $self->render(json=>{'id'=>$res->id,'echo'=>$res->echo,'error'=>undef});
 }
 
 1;
