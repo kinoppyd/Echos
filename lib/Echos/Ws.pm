@@ -12,18 +12,23 @@ sub broadcast {
 
     $self->on(message => sub {
             my ($self, $message) = @_;
-            for my $usr (keys %$clients){
-                $clients->{$usr}->send(
-                    Mojo::JSON->new->encode({
-                            message=>$message
-                        })
-                );
-            }
+            send_all($message);
         });
 
     $self->on(finished => sub{
             delete $clients->{$id};
         }
     );
+}
+
+sub send_all {
+    my ($message) = @_;
+    for my $usr (keys %$clients){
+        $clients->{$usr}->send(
+            Mojo::JSON->new->encode({
+                    message=>$message
+                })
+        );
+    }
 }
 1;
