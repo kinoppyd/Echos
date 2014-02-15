@@ -4,6 +4,7 @@ use warnings;
 use utf8;
 use v5.10;
 use Mojo::JSON;
+use Mojo::ByteStream 'b';
 
 our $instance;
 
@@ -21,7 +22,7 @@ sub send_all {
     my ($self, $msg) = @_;
     my $users = $self->{'ws'};
 
-    my $json = Mojo::JSON->new->encode({ message=>$msg });
+    my $json = b(Mojo::JSON->new->encode({ message=>$msg }))->decode('UTF-8');
     for my $user (keys %$users){
         $users->{$user}->send($json);
     }
