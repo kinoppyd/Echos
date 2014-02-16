@@ -1,6 +1,5 @@
 % layout 'default';
 % title 'Echos';
-<p><input type="text" id="message" /></p>
 <div class="echos" id="echos">
     <% for my $echo (@$echos){ %>
     <div class="echo">

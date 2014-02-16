@@ -14,12 +14,6 @@ $(
                 $elm.show('fast');
 
             }
-            $('#message').keydown( function(e) {
-                if (e.keyCode == 13 && $('#message').val() ){
-                    $ws.send($('#message').val());
-                    $('#message').val('');
-                }
-            });
         }
 
  );
